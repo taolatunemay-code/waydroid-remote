@@ -10,6 +10,17 @@ public struct RemoteTouchView: View {
     }
 
     public var body: some View {
+        if #available(iOS 16.0, *) {
+            contentView
+                .statusBarHidden(true)
+                .persistentSystemOverlays(.hidden)
+        } else {
+            contentView
+                .statusBarHidden(true)
+        }
+    }
+
+    private var contentView: some View {
         GeometryReader { geometry in
             ZStack {
                 Color.black.ignoresSafeArea()
@@ -54,7 +65,5 @@ public struct RemoteTouchView: View {
                 }
             }
         }
-        .statusBarHidden(true)
-        .persistentSystemOverlays(.hidden)
     }
 }
