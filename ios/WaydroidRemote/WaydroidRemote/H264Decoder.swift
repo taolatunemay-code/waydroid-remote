@@ -121,8 +121,8 @@ public final class H264Decoder {
         let status = VTDecompressionSessionCreate(
             allocator: kCFAllocatorDefault,
             formatDescription: formatDesc,
-            videoDecoderSpecification: nil,
-            destinationImageBufferAttributes: destinationImageBufferAttributes as CFDictionary,
+            decoderSpecification: nil,
+            imageBufferAttributes: destinationImageBufferAttributes as CFDictionary,
             outputCallback: &callbackRecord,
             decompressionSessionOut: &newSession
         )
@@ -132,7 +132,6 @@ public final class H264Decoder {
         // Configure ultra-low-latency real-time properties
         VTSessionSetProperty(session, key: kVTDecompressionPropertyKey_RealTime, value: kCFBooleanTrue)
         VTSessionSetProperty(session, key: kVTDecompressionPropertyKey_MaximizePowerEfficiency, value: kCFBooleanFalse)
-        VTSessionSetProperty(session, key: kVTDecompressionPropertyKey_OutputPoolPreroll, value: 0 as CFNumber)
 
         self.decompressionSession = session
     }

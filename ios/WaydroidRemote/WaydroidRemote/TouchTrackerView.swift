@@ -64,7 +64,7 @@ public final class TouchTrackerUIView: UIView {
         let mapper = getMapper()
 
         for touch in touches {
-            let pointerId = allocatePointerId(for touch)
+            let pointerId = allocatePointerId(for: touch)
             let isFirst = (touchToId.count == 1)
             let pointerIndex = UInt8(pointerId & 0xFF)
 
@@ -125,7 +125,7 @@ public final class TouchTrackerUIView: UIView {
 
         for touch in touches {
             let isLast = (touchToId.count <= 1)
-            let pointerId = releasePointerId(for touch)
+            let pointerId = releasePointerId(for: touch)
             let pointerIndex = UInt8(pointerId & 0xFF)
 
             // Scrcpy/Android: UP for last pointer; POINTER_UP | (index << 8) for non-last
