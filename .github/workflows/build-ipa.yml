@@ -31,8 +31,9 @@ jobs:
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO
 
-      - name: Package IPA artifact
+      - name: Ad-hoc sign and package IPA artifact
         run: |
+          codesign --force --deep --sign - build/WaydroidRemote.xcarchive/Products/Applications/WaydroidRemote.app
           mkdir -p build/Payload
           cp -R build/WaydroidRemote.xcarchive/Products/Applications/WaydroidRemote.app build/Payload/
           (cd build && zip -qry WaydroidRemote.ipa Payload)

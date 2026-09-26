@@ -33,7 +33,7 @@ public struct ContentView: View {
     }
 
     private var connectionView: some View {
-        NavigationStack {
+        NavigationView {
             ScrollView {
                 VStack(spacing: 20) {
                     headerView
@@ -52,7 +52,7 @@ public struct ContentView: View {
             .navigationTitle("Waydroid Remote")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         discovery.startBrowsing()
                     } label: {
@@ -62,13 +62,14 @@ public struct ContentView: View {
                 }
             }
         }
+        .navigationViewStyle(.stack)
     }
 
     private var headerView: some View {
         VStack(spacing: 8) {
             Image(systemName: "ipad.and.iphone")
                 .font(.system(size: 48))
-                .foregroundStyle(.cyan.gradient)
+                .foregroundColor(.cyan)
 
             Text("Màn hình Cảm ứng Từ xa")
                 .font(.title2.bold())
